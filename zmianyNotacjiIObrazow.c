@@ -3,6 +3,22 @@
  * Dokumentacja funkcji w pliku zmianyNotacjiIObrazow.h*/
 #include "zmianyNotacjiIObrazow.h"
 
+void zainicjalizujObrazki(){
+	DIR* dir = opendir("Obrazki");
+	if(dir){
+		obrazki[0]="Obrazki/szare.png";
+		obrazki[1]="Obrazki/czarnemale.png";
+		obrazki[2]="Obrazki/bialemale.png";
+		obrazki[3]="Obrazki/zielonemale.png";
+		obrazki[4]="Obrazki/czerwonemale.png";
+	}else{
+		obrazki[0]="../Obrazki/szare.png";
+		obrazki[1]="../Obrazki/czarnemale.png";
+		obrazki[2]="../Obrazki/bialemale.png";
+		obrazki[3]="../Obrazki/zielonemale.png";
+		obrazki[4]="../Obrazki/czerwonemale.png";
+	}
+}
 WSP numerNaWspolrzedne(int nr){
     WSP wsp;
     if(nr<5){
@@ -93,19 +109,19 @@ void Zmien(GtkWidget *guzik, GtkWidget *obraz, int *naJakiKolor){
     gtk_container_remove(GTK_CONTAINER(guzik), obraz);
     switch(*naJakiKolor){
         case 0:
-            obraz=gtk_image_new_from_file("szare.png");
+            obraz=gtk_image_new_from_file(obrazki[0]);
             break;
         case 1:
-            obraz=gtk_image_new_from_file("czarnemale.png");
+            obraz=gtk_image_new_from_file(obrazki[1]);
             break;
         case 2:
-            obraz=gtk_image_new_from_file("bialemale.png");
+            obraz=gtk_image_new_from_file(obrazki[2]);
             break;
         case 3:
-            obraz=gtk_image_new_from_file("zielonemale.png");
+            obraz=gtk_image_new_from_file(obrazki[3]);
             break;
         case 4:
-            obraz=gtk_image_new_from_file("czerwonemale.png");
+            obraz=gtk_image_new_from_file(obrazki[4]);
             break;
         default:
             break;

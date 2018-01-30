@@ -87,6 +87,7 @@ static void activate (GtkApplication *app, gpointer data)
 
 int main (int argc, char **argv)
 {
+    zainicjalizujObrazki();
     GtkApplication *app;
     int status;
     /**@var x - wartośći int argc, char **argv */

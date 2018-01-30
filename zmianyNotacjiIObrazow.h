@@ -4,10 +4,19 @@
  */
 #ifndef PROJEKTZC_ZMIANYNOTACJI_H
 #define PROJEKTZC_ZMIANYNOTACJI_H
+
+
 /**@headerfile types.h*/
 #include "types.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+/**@var obrazki - tablica nazw tekstur*/
+char *obrazki[5];
+
+/**@fn zainicjalizujObrazki
+* Funkcja znajdująca  tekstury.s*/
+void zainicjalizujObrazki();
 
 /**@fn numerNaWspolrzedne
  * Funkcja na podstawie unikalnego numeru pola wylicza jego współrzędne na planszy

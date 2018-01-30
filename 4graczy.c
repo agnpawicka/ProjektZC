@@ -306,19 +306,19 @@ int main4(GtkWidget *widget, gpointer   data)
         DANE[i].guzik=gtk_button_new();
         switch(DANE[i].kolor) {
             case 1:
-                DANE[i].obraz = gtk_image_new_from_file("czarnemale.png");
+                DANE[i].obraz = gtk_image_new_from_file(obrazki[1]);
                 break;
             case 2:
-                DANE[i].obraz = gtk_image_new_from_file("bialemale.png");
+                DANE[i].obraz = gtk_image_new_from_file(obrazki[2]);
                 break;
             case 3:
-                DANE[i].obraz = gtk_image_new_from_file("zielonemale.png");
+                DANE[i].obraz = gtk_image_new_from_file(obrazki[3]);
                 break;
             case 4:
-                DANE[i].obraz = gtk_image_new_from_file("czerwonemale.png");
+                DANE[i].obraz = gtk_image_new_from_file(obrazki[4]);
                 break;
             default:
-                DANE[i].obraz = gtk_image_new_from_file("szare.png");
+                DANE[i].obraz = gtk_image_new_from_file(obrazki[0]);
                 break;
         }
         gtk_container_add(GTK_CONTAINER(DANE[i].guzik), DANE[i].obraz);
