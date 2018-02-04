@@ -35,4 +35,9 @@ typedef struct daneDotyczacePlanszy{
     GtkWidget *guzik;
     GtkWidget *obraz;
 }doPlanszy;
+
+typedef  struct dwspolrzedne{
+    double  x;
+    double y;
+}DWSP;
 #endif //PROJEKTZC_TYPES_H

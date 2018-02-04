@@ -3,7 +3,7 @@ project(ProjektZC)
 
 set(CMAKE_C_STANDARD 99)
 
-set(SOURCE_FILES  2graczy.c main.c 2graczy.h 3graczy.h 3graczy.c 4graczy.c 4graczy.h types.h zmianyNotacjiIObrazow.c zmianyNotacjiIObrazow.h WspolneFunkcjeRoznchWersji.c WspolneFunkcjeRoznchWersji.h sprawdzaniePrzesuniec.c sprawdzaniePrzesuniec.h)
+set(SOURCE_FILES  2graczy.c main.c 2graczy.h 3graczy.h 3graczy.c 4graczy.c 4graczy.h types.h zmianyNotacjiIObrazow.c zmianyNotacjiIObrazow.h WspolneFunkcjeRoznchWersji.c WspolneFunkcjeRoznchWersji.h sprawdzaniePrzesuniec.c sprawdzaniePrzesuniec.h )
 add_executable(ProjektZC ${SOURCE_FILES})
 
 find_package(PkgConfig REQUIRED)

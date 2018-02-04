@@ -18,8 +18,8 @@ int sprawdzPrzesuniecie(int nr){
 
 
     if(przedPoprzedniKlikniety==poprzedniKlikniety){ ///Przesuwanie pojedynczej kuli
-        if( DANE[nr].kolor==0){///Sprawdzenie czy pole na które chcemy przesunąć kulę jest puste
-            zmianaKoloru(nr, DANE[poprzedniKlikniety].kolor);
+        if( Dane[nr]==0){///Sprawdzenie czy pole na które chcemy przesunąć kulę jest puste
+            zmianaKoloru(nr, Dane[poprzedniKlikniety]);
             zmianaKoloru(poprzedniKlikniety, 0);
             return 1;
         }
@@ -46,25 +46,25 @@ int sprawdzPrzesuniecie(int nr){
 
     if(przedP.x+delta.x==poprzedni.x && przedP.y+delta.y==poprzedni.y){///Przesuwanie dwóch kul równolegle do prostej wyznaczonej przez przesuwane kule
 
-        if(DANE[nr].kolor==0){///Sprawdzenie, czy pole do którego chcemy przesunąć linię jest puste
-            zmianaKoloru(nr, DANE[poprzedniKlikniety].kolor);
-            zmianaKoloru(poprzedniKlikniety, DANE[przedPoprzedniKlikniety].kolor);
+        if(Dane[nr]==0){///Sprawdzenie, czy pole do którego chcemy przesunąć linię jest puste
+            zmianaKoloru(nr, Dane[poprzedniKlikniety]);
+            zmianaKoloru(poprzedniKlikniety, Dane[przedPoprzedniKlikniety]);
             zmianaKoloru(przedPoprzedniKlikniety, 0);
             return 1;
         }
 
 
-        if(DANE[nr].kolor==DANE[poprzedniKlikniety].kolor) return 0;///Błąd: próba przepchnięcia własnch kul
-        if(wersja==4 && ((DANE[poprzedniKlikniety].kolor>2 && DANE[nr].kolor>2 )|| (DANE[poprzedniKlikniety].kolor<3 && DANE[nr].kolor<3))) return 0;///Błąd: próba przepchnięcia kul własnych lub sojusznika
+        if(Dane[nr]==Dane[poprzedniKlikniety]) return 0;///Błąd: próba przepchnięcia własnch kul
+        if(wersja==4 && ((Dane[poprzedniKlikniety]>2 && Dane[nr]>2 )|| (Dane[poprzedniKlikniety]<3 && Dane[nr]<3))) return 0;///Błąd: próba przepchnięcia kul własnych lub sojusznika
 
 
-        if(DANE[nr].kolor!=0){///Proba przepchnięcia kuli przeciwnika
+        if(Dane[nr]!=0){///Proba przepchnięcia kuli przeciwnika
             N.x+=delta.x;
             N.y+=delta.y;
 
             if(pozaPlansza(N)==0){///Sprawdzenie, czy za kulą przeciwnika znajduje się pole
-                if(DANE[wspolrzedneNaNumer(N)].kolor==0) {///Sprawdzenie, czy pole za kulą przeciwnika jest puste
-                    zmianaKoloru(wspolrzedneNaNumer(N), DANE[nr].kolor);
+                if(Dane[wspolrzedneNaNumer(N)]==0) {///Sprawdzenie, czy pole za kulą przeciwnika jest puste
+                    zmianaKoloru(wspolrzedneNaNumer(N), Dane[nr]);
                 }
                 else return 0;///Błąd: próba przesunięcia dwoma kulami co najmniej dwóch kul
             }
@@ -81,8 +81,8 @@ int sprawdzPrzesuniecie(int nr){
 
             }
 
-            zmianaKoloru(nr, DANE[poprzedniKlikniety].kolor);
-            zmianaKoloru(poprzedniKlikniety, DANE[przedPoprzedniKlikniety].kolor);
+            zmianaKoloru(nr, Dane[poprzedniKlikniety]);
+            zmianaKoloru(poprzedniKlikniety, Dane[przedPoprzedniKlikniety]);
             zmianaKoloru(przedPoprzedniKlikniety, 0);
             return 1;
         }
@@ -95,13 +95,13 @@ int sprawdzPrzesuniecie(int nr){
 
         if(pozaPlansza(N)==1) return 0;///Błąd: próba przesunięcia własnych kul poza planszę
 
-        if(DANE[poprzedniKlikniety].kolor!=DANE[przedPoprzedniKlikniety].kolor) return 0;///Błąd: próba przesunięcia bokiem dwóch różnch kul
+        if(Dane[poprzedniKlikniety]!=Dane[przedPoprzedniKlikniety]) return 0;///Błąd: próba przesunięcia bokiem dwóch różnch kul
 
-        if(DANE[nr].kolor==0 && DANE[wspolrzedneNaNumer(N)].kolor==0){///Sprawdzenie, czy docelowe pola są puste
+        if(Dane[nr]==0 && Dane[wspolrzedneNaNumer(N)]==0){///Sprawdzenie, czy docelowe pola są puste
 
-            zmianaKoloru(nr, DANE[poprzedniKlikniety].kolor);
+            zmianaKoloru(nr, Dane[poprzedniKlikniety]);
             zmianaKoloru(poprzedniKlikniety, 0);
-            zmianaKoloru(wspolrzedneNaNumer(N), DANE[przedPoprzedniKlikniety].kolor);
+            zmianaKoloru(wspolrzedneNaNumer(N), Dane[przedPoprzedniKlikniety]);
             zmianaKoloru(przedPoprzedniKlikniety, 0);
             return 1;
 
@@ -133,18 +133,18 @@ int sprawdzPrzesuniecie(int nr){
 
     if(przedP.x==poprzedni.x-2*delta.x && przedP.y==poprzedni.y-2*delta.y){///Przesuwanie trzech kul równolegle do wyznaczonej przez nie prostej
 
-        if(DANE[nr].kolor==0){///Sprawdzenie, czy pole do którego chcemy przesunąć linię jest puste
-            zmianaKoloru(nr, DANE[poprzedniKlikniety].kolor);
-            zmianaKoloru(poprzedniKlikniety, DANE[wspolrzedneNaNumer(posredni)].kolor);
-            zmianaKoloru(wspolrzedneNaNumer(posredni), DANE[przedPoprzedniKlikniety].kolor);
+        if(Dane[nr]==0){///Sprawdzenie, czy pole do którego chcemy przesunąć linię jest puste
+            zmianaKoloru(nr, Dane[poprzedniKlikniety]);
+            zmianaKoloru(poprzedniKlikniety, Dane[wspolrzedneNaNumer(posredni)]);
+            zmianaKoloru(wspolrzedneNaNumer(posredni), Dane[przedPoprzedniKlikniety]);
             zmianaKoloru(przedPoprzedniKlikniety, 0);
             return 1;
         }
 
-        if(DANE[nr].kolor==DANE[poprzedniKlikniety].kolor) return 0;///Błąd: próba przepchnięcia własnch kul
-        if(wersja==4 && ((DANE[poprzedniKlikniety].kolor>2 && DANE[nr].kolor>2 )|| (DANE[poprzedniKlikniety].kolor<3 && DANE[nr].kolor<3))) return 0;///Błąd: próba przepchnięcia kul własnych lub sojusznika
+        if(Dane[nr]==Dane[poprzedniKlikniety]) return 0;///Błąd: próba przepchnięcia własnch kul
+        if(wersja==4 && ((Dane[poprzedniKlikniety]>2 && Dane[nr]>2 )|| (Dane[poprzedniKlikniety]<3 && Dane[nr]<3))) return 0;///Błąd: próba przepchnięcia kul własnych lub sojusznika
 
-        if(DANE[nr].kolor!=0){///Próba przepchnięcia kul przeciwnika
+        if(Dane[nr]!=0){///Próba przepchnięcia kul przeciwnika
             WSP N1;
             WSP N2;
             N1.x=N.x+delta.x;
@@ -154,9 +154,9 @@ int sprawdzPrzesuniecie(int nr){
 
             if(pozaPlansza(N1)==1){///Sprawdzenie, czy za kulą przeciwnika jest koniec planszy
 
-                zmianaKoloru(nr, DANE[poprzedniKlikniety].kolor);
-                zmianaKoloru(poprzedniKlikniety, DANE[wspolrzedneNaNumer(posredni)].kolor);
-                zmianaKoloru(wspolrzedneNaNumer(posredni), DANE[przedPoprzedniKlikniety].kolor);
+                zmianaKoloru(nr, Dane[poprzedniKlikniety]);
+                zmianaKoloru(poprzedniKlikniety, Dane[wspolrzedneNaNumer(posredni)]);
+                zmianaKoloru(wspolrzedneNaNumer(posredni), Dane[przedPoprzedniKlikniety]);
                 zmianaKoloru(przedPoprzedniKlikniety, 0);
 
                 if(Kto==2) BialePunkty++;///Wypchnięto kulę przeciwnika, zmiana punktacji
@@ -171,26 +171,26 @@ int sprawdzPrzesuniecie(int nr){
             }
 
 
-            if(DANE[wspolrzedneNaNumer(N1)].kolor==0){///Sprawdzenie, czy za kulą przeciwnika jest puste pole, przepchnięcie jednej kuli
-                zmianaKoloru(wspolrzedneNaNumer(N1), DANE[nr].kolor);
-                zmianaKoloru(nr, DANE[poprzedniKlikniety].kolor);
-                zmianaKoloru(poprzedniKlikniety, DANE[wspolrzedneNaNumer(posredni)].kolor);
-                zmianaKoloru(wspolrzedneNaNumer(posredni), DANE[przedPoprzedniKlikniety].kolor);
+            if(Dane[wspolrzedneNaNumer(N1)]==0){///Sprawdzenie, czy za kulą przeciwnika jest puste pole, przepchnięcie jednej kuli
+                zmianaKoloru(wspolrzedneNaNumer(N1), Dane[nr]);
+                zmianaKoloru(nr, Dane[poprzedniKlikniety]);
+                zmianaKoloru(poprzedniKlikniety, Dane[wspolrzedneNaNumer(posredni)]);
+                zmianaKoloru(wspolrzedneNaNumer(posredni), Dane[przedPoprzedniKlikniety]);
                 zmianaKoloru(przedPoprzedniKlikniety, 0);
                 return 1;
             }
 
 
-            if(DANE[wspolrzedneNaNumer(N1)].kolor==DANE[poprzedniKlikniety].kolor) return 0;///Błąd: próba przepchnięcia własnej kuli kulą przeciwnika
-            if(wersja==4 && ((DANE[poprzedniKlikniety].kolor>2 && DANE[wspolrzedneNaNumer(N1)].kolor>2 )|| (DANE[poprzedniKlikniety].kolor<3 && DANE[wspolrzedneNaNumer(N1)].kolor<3))) return 0;///Błąd: próba przepchnięcia kul własnych lub sojusznika
+            if(Dane[wspolrzedneNaNumer(N1)]==Dane[poprzedniKlikniety]) return 0;///Błąd: próba przepchnięcia własnej kuli kulą przeciwnika
+            if(wersja==4 && ((Dane[poprzedniKlikniety]>2 && Dane[wspolrzedneNaNumer(N1)]>2 )|| (Dane[poprzedniKlikniety]<3 && Dane[wspolrzedneNaNumer(N1)]<3))) return 0;///Błąd: próba przepchnięcia kul własnych lub sojusznika
 
 
             if(pozaPlansza(N2)==1){///Sprawdzenie, czy za dwiema kulami przeciwnika jest koniec planszy
-                zmianaKoloru(wspolrzedneNaNumer(N1), DANE[nr].kolor);
-                zmianaKoloru(nr, DANE[poprzedniKlikniety].kolor);
-                zmianaKoloru(poprzedniKlikniety, DANE[wspolrzedneNaNumer(posredni)].kolor);
-                zmianaKoloru(wspolrzedneNaNumer(posredni), DANE[przedPoprzedniKlikniety].kolor);
-                zmianaKoloru(przedPoprzedniKlikniety, 0);
+                Dane[wspolrzedneNaNumer(N1)]=Dane[nr];
+                Dane[nr]=Dane[poprzedniKlikniety];
+                Dane[poprzedniKlikniety]=Dane[wspolrzedneNaNumer(posredni)];
+                Dane[wspolrzedneNaNumer(posredni)] =Dane[przedPoprzedniKlikniety];
+                Dane[przedPoprzedniKlikniety]=0;
 
                 if(Kto==2) BialePunkty++;///Wypchnięcie kuli przeciwnika, zmiana punktacji
                 else if(Kto==1) CzarnePunkty++;
@@ -203,12 +203,12 @@ int sprawdzPrzesuniecie(int nr){
                 return 1;
             }
 
-            if(DANE[wspolrzedneNaNumer(N2)].kolor==0){///Sprawdzenie cz za kulami przeciwnika jest puste pole, przepchnięcie dwóch kul
-                zmianaKoloru(wspolrzedneNaNumer(N2), DANE[wspolrzedneNaNumer(N1)].kolor);
-                zmianaKoloru(wspolrzedneNaNumer(N1), DANE[nr].kolor);
-                zmianaKoloru(nr, DANE[poprzedniKlikniety].kolor);
-                zmianaKoloru(poprzedniKlikniety, DANE[wspolrzedneNaNumer(posredni)].kolor);
-                zmianaKoloru(wspolrzedneNaNumer(posredni), DANE[przedPoprzedniKlikniety].kolor);
+            if(Dane[wspolrzedneNaNumer(N2)]==0){///Sprawdzenie cz za kulami przeciwnika jest puste pole, przepchnięcie dwóch kul
+                zmianaKoloru(wspolrzedneNaNumer(N2), Dane[wspolrzedneNaNumer(N1)]);
+                zmianaKoloru(wspolrzedneNaNumer(N1), Dane[nr]);
+                zmianaKoloru(nr, Dane[poprzedniKlikniety]);
+                zmianaKoloru(poprzedniKlikniety, Dane[wspolrzedneNaNumer(posredni)]);
+                zmianaKoloru(wspolrzedneNaNumer(posredni), Dane[przedPoprzedniKlikniety]);
                 zmianaKoloru(przedPoprzedniKlikniety, 0);
                 return 1;
             }
@@ -226,12 +226,12 @@ int sprawdzPrzesuniecie(int nr){
 
         if(pozaPlansza(N1)==1 || pozaPlansza(N2)==1) return 0;///Błąd: próba wypchnięcia własnch kul poza planszę
 
-        if(DANE[poprzedniKlikniety].kolor!=DANE[przedPoprzedniKlikniety].kolor || DANE[poprzedniKlikniety].kolor!=DANE[wspolrzedneNaNumer(posredni)].kolor)return  0;///Błąd: próba przesunięcia bokiem 3 kul niejednakowego koloru
+        if(Dane[poprzedniKlikniety]!=Dane[przedPoprzedniKlikniety] || Dane[poprzedniKlikniety]!=Dane[wspolrzedneNaNumer(posredni)])return  0;///Błąd: próba przesunięcia bokiem 3 kul niejednakowego koloru
 
-        if(DANE[nr].kolor==0 && DANE[wspolrzedneNaNumer(N1)].kolor==0 && DANE[wspolrzedneNaNumer(N2)].kolor==0){///Sprawdzenie, czy docelowe pola są puste
-            zmianaKoloru(wspolrzedneNaNumer(N1), DANE[przedPoprzedniKlikniety].kolor);
-            zmianaKoloru(wspolrzedneNaNumer(N2), DANE[wspolrzedneNaNumer(posredni)].kolor);
-            zmianaKoloru(nr, DANE[poprzedniKlikniety].kolor);
+        if(Dane[nr]==0 && Dane[wspolrzedneNaNumer(N1)]==0 && Dane[wspolrzedneNaNumer(N2)]==0){///Sprawdzenie, czy docelowe pola są puste
+            zmianaKoloru(wspolrzedneNaNumer(N1), Dane[przedPoprzedniKlikniety]);
+            zmianaKoloru(wspolrzedneNaNumer(N2), Dane[wspolrzedneNaNumer(posredni)]);
+            zmianaKoloru(nr, Dane[poprzedniKlikniety]);
             zmianaKoloru(poprzedniKlikniety, 0);
             zmianaKoloru(przedPoprzedniKlikniety, 0);
             zmianaKoloru(wspolrzedneNaNumer(posredni), 0);
@@ -243,11 +243,11 @@ int sprawdzPrzesuniecie(int nr){
 }
 
 void sprawdzPoczatekLinii(int nr){
-    if(DANE[nr].kolor==0){///Błąd: próba przesunięcia pustego pola
+    if(Dane[nr]==0){///Błąd: próba przesunięcia pustego pola
         sprintf(t, "Nie można przesuwać pustego pola. Proszę podać początek przesuwanej linii");
         gtk_label_set_text(GTK_LABEL(info),t);
     }
-    else if(DANE[nr].kolor!=Kto) {///Błąd: próba przesunięcia kul przeciwnika
+    else if(Dane[nr]!=Kto) {///Błąd: próba przesunięcia kul przeciwnika
         sprintf(t, "Łapy precz od kul przeciwnika! Początek SWOJEJ linii!");
         gtk_label_set_text(GTK_LABEL(info),t);
     }

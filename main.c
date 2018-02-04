@@ -85,6 +85,8 @@ static void activate (GtkApplication *app, gpointer data)
 
 }
 
+cairo_surface_t* surface=NULL;
+
 int main (int argc, char **argv)
 {
     zainicjalizujObrazki();

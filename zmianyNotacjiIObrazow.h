@@ -13,6 +13,7 @@
 
 /**@var obrazki - tablica nazw tekstur*/
 char *obrazki[5];
+cairo_surface_t *obraz[5];
 
 /**@fn zainicjalizujObrazki
 * Funkcja znajdująca  tekstury.s*/
@@ -38,5 +39,16 @@ int wspolrzedneNaNumer(WSP wsp);
  */
 void Zmien(GtkWidget *guzik, GtkWidget *obraz, int *naJakiKolor);
 
-
+/**@fn DrawNa Moje
+ * Funkcja na podstawie współrzędnych drawning area wylicza współrzędne wewnętrzne
+ * @param dwsp - współrzędne drawning area
+ * @return - współrzędne wewnętrze
+ */
+WSP DrawNaMoje(DWSP dwsp);
+/**@fn MojeNaDraw
+ * Funkcja na podstawie współrzędnych wewnętrznych pola wylicza współrzędne na drawning area
+ * @param wsp - współrzędne wewnętrzne
+ * @return - współrzędne pola  drawning area
+ */
+DWSP MojeNaDraw(WSP wsp);
 #endif //PROJEKTZC_ZMIANYNOTACJI_H

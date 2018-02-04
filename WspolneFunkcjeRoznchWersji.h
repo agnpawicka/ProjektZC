@@ -67,9 +67,13 @@
 #include <stdlib.h>
 
 
-/**@var DANE[61]
- * tablica struktur przechowująca dane o przycisku*/
-doPlanszy DANE[61];
+/**@var Dane[61]
+ * tablica przechowująca dane o polu*/
+int Dane[61];
+
+extern cairo_surface_t *surface;
+GtkWidget *ramka;
+GtkWidget *plansza;
 
 /**@var wersja - przechowuje informację iluosobowa wersja jest rozgrwana*/
 int wersja;
@@ -113,7 +117,7 @@ GtkWidget *czyjaKolej;
 /**gracz, t, pkt są pomocniczymi wartościami przydatnymi do wyświetlania informacji o grze */
 char gracz[25];
 char t[80];
-char pkt[30];
+char pkt[83];
 
 
 /**@fn czySasiaduja
@@ -150,5 +154,10 @@ int czyDobryKoniec(int a, int b);
  * @param kolor - nowy kolor pola nr
  */
 void zmianaKoloru(int nr, int kolor);
+
+/**@fn narysuj
+ * funksja rysuje odpowiednią planszę na drawning area
+ * */
+void narysuj();
 
 #endif //PROJEKTZC_WSPOLNEFUNKCJEROZNCHWERSJI_H

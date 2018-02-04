@@ -6,12 +6,22 @@
 void zainicjalizujObrazki(){
 	DIR* dir = opendir("Obrazki");
 	if(dir){
+        obraz[0]=cairo_image_surface_create_from_png("Obrazki/szare.png");
+        obraz[1]=cairo_image_surface_create_from_png("Obrazki/czarnemale.png");
+        obraz[2]=cairo_image_surface_create_from_png("Obrazki/bialemale.png");
+        obraz[3]=cairo_image_surface_create_from_png("Obrazki/zielonemale.png");
+        obraz[4]=cairo_image_surface_create_from_png("Obrazki/czerwonemale.png");
 		obrazki[0]="Obrazki/szare.png";
 		obrazki[1]="Obrazki/czarnemale.png";
 		obrazki[2]="Obrazki/bialemale.png";
 		obrazki[3]="Obrazki/zielonemale.png";
 		obrazki[4]="Obrazki/czerwonemale.png";
 	}else{
+        obraz[0]=cairo_image_surface_create_from_png("../Obrazki/szare.png");
+        obraz[1]=cairo_image_surface_create_from_png("../Obrazki/czarnemale.png");
+        obraz[2]=cairo_image_surface_create_from_png("../Obrazki/bialemale.png");
+        obraz[3]=cairo_image_surface_create_from_png("../Obrazki/zielonemale.png");
+        obraz[4]=cairo_image_surface_create_from_png("../Obrazki/czerwonemale.png");
 		obrazki[0]="../Obrazki/szare.png";
 		obrazki[1]="../Obrazki/czarnemale.png";
 		obrazki[2]="../Obrazki/bialemale.png";
@@ -128,4 +138,22 @@ void Zmien(GtkWidget *guzik, GtkWidget *obraz, int *naJakiKolor){
     }
     gtk_container_add(GTK_CONTAINER(guzik), obraz);
     gtk_widget_show(obraz);
+}
+
+WSP DrawNaMoje(DWSP dwsp){
+    WSP wsp;
+    dwsp.x/=60;
+    wsp.x=(int)dwsp.x;
+    int x=(int)dwsp.y;
+    x/=30;
+    wsp.y=(17-x+wsp.x)/2-2;
+    return wsp;
+}
+
+
+DWSP MojeNaDraw(WSP wsp){
+    DWSP dwsp;
+    dwsp.x=(double)(wsp.x*60+10);
+    dwsp.y=(double)(30*( 14+wsp.x-2*wsp.y-2))+10;
+    return dwsp;
 }
