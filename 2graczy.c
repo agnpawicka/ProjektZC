@@ -35,6 +35,29 @@ static void nowaGra2(GtkWidget *widget, gpointer data) {
     gtk_widget_queue_draw(plansza);
 }
 
+
+/**@fn clear
+ * funkcja konieczna dla dzialania wyswietlania*/
+static gboolean clear(GtkWidget *widget, cairo_t *cr, gpointer data) {
+    cairo_set_source_surface(cr, surface, 0, 0);
+    cairo_paint(cr);
+    //CR=cr;
+    return FALSE;
+}
+
+/**@fn konfig
+ * funkcja konieczna dla dzialania wyswietlania*/
+static gboolean konfig(GtkWidget *widget, GdkEventConfigure *event, gpointer data) {
+    if (surface) cairo_surface_destroy(surface);
+    surface = gdk_window_create_similar_surface(gtk_widget_get_window(widget), CAIRO_CONTENT_COLOR,
+                                                gtk_widget_get_allocated_width(widget),
+                                                gtk_widget_get_allocated_height(widget));
+
+    narysuj();
+    return TRUE;
+}
+
+
 /**@fn plansza2
  * Funkcja sprawdzająca podstawowe błedy ruchu. Odwołuje się do funkcji zmianiających planszę i wyniki
  * @param widget
@@ -43,14 +66,12 @@ static void nowaGra2(GtkWidget *widget, gpointer data) {
  */
 static void plansza2(GtkWidget *widget, GdkEventButton *event, gpointer data) {
     if (event->button == GDK_BUTTON_PRIMARY) {
-        printf("%f %f\n", event->x, event->y);
         DWSP dwsp;
-        dwsp.x=event->x;
-        dwsp.y=event->y;
-        WSP x=DrawNaMoje(dwsp);
-        printf("%d %d moje\n", x.x, x.y);
+        dwsp.x = event->x;
+        dwsp.y = event->y;
+        WSP x = DrawNaMoje(dwsp);
         int nr = wspolrzedneNaNumer(x);
-         if (Kto == 0) return;///Sprawdzenie, czy gra wciąż trwa
+        if (Kto == 0) return;///Sprawdzenie, czy gra wciąż trwa
         switch (ileKliknietych) {///Sprawdzenie, któr etap ruchu trwa
             case 0:///początek, program dostał początek przesuwanej przez gracza linii
                 sprawdzPoczatekLinii(nr);
@@ -61,8 +82,6 @@ static void plansza2(GtkWidget *widget, GdkEventButton *event, gpointer data) {
             default:///program posiada już dane o przesuwanej linii, sprawdza czy dobrze podano kierunek przesunięcia
                 if (sprawdzPrzesuniecie(nr) > 0)///Dobrze podane przesunięcie
                 {
-                    narysuj();
-                    gtk_widget_queue_draw(plansza);
 
                     if (Kto == 2) {///Zmiana w wyświetlanej informacji o tym, czyja kolej na ruch
                         sprintf(gracz, "Kolej gracza czarnego");
@@ -96,22 +115,6 @@ static void plansza2(GtkWidget *widget, GdkEventButton *event, gpointer data) {
         }
 
     }
-}
-
-static gboolean clear(GtkWidget *widget, cairo_t *cr, gpointer data) {
-    cairo_set_source_surface(cr, surface, 0, 0);
-    cairo_paint(cr);
-    return FALSE;
-}
-
-static gboolean konfig(GtkWidget *widget, GdkEventConfigure *event, gpointer data) {
-    if (surface) cairo_surface_destroy(surface);
-    surface = gdk_window_create_similar_surface(gtk_widget_get_window(widget), CAIRO_CONTENT_COLOR,
-                                                gtk_widget_get_allocated_width(widget),
-                                                gtk_widget_get_allocated_height(widget));
-
-    narysuj();
-    return TRUE;
 }
 
 /**@fn zapiszGre2
@@ -310,8 +313,10 @@ int main2(GtkWidget *widget, gpointer data) {
         }
     }
     WSP wsp[61];
-    for (int i = 0; i < 61; i++)
-        wsp[i] = numerNaWspolrzedne(i);///Przypisanie numerom współrzędnch do umiejscowienia przycisków
+    for (int i = 0; i < 61; i++){
+        wsp[i] = numerNaWspolrzedne(i);
+        dwspDane[i]=MojeNaDraw(wsp[i]);
+    }///Przypisanie numerom współrzędnch do umiejscowienia przycisków
 
     if (ustawieniaPoczatkowe == 1) {///jeśli nie zapisano ostatniej gry lub nie udało się odczytać stanu gry
 

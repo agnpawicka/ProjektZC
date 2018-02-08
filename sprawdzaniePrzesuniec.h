@@ -10,6 +10,7 @@
 
 #include "WspolneFunkcjeRoznchWersji.h"
 #include "types.h"
+#include <time.h>
 
 
 /**@fn sprawdzPrzesuniecie

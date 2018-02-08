@@ -70,6 +70,9 @@
 /**@var Dane[61]
  * tablica przechowująca dane o polu*/
 int Dane[61];
+/**@var dwspDane
+ * Tablica przechowująca dane o położeniu kul*/
+DWSP dwspDane[61];
 
 extern cairo_surface_t *surface;
 GtkWidget *ramka;
@@ -156,7 +159,7 @@ int czyDobryKoniec(int a, int b);
 void zmianaKoloru(int nr, int kolor);
 
 /**@fn narysuj
- * funksja rysuje odpowiednią planszę na drawning area
+ * funksja rysuje odpowiednią planszę na drawning area na podstawie danych o położeniu z dwspDane
  * */
 void narysuj();
 

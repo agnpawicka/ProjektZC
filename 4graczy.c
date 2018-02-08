@@ -4,14 +4,14 @@
 /**@headerfile 4graczy.h*/
 #include "4graczy.h"
 
+/**@fn plansza4
+ * Funkcja odpowiedzialna za sprawdzenie poprawności ruchu i przekazanie informacji dalej*/
 static void plansza4(GtkWidget *widget, GdkEventButton *event, gpointer data) {
     if (event->button == GDK_BUTTON_PRIMARY) {
-        printf("%f %f\n", event->x, event->y);
         DWSP dwsp;
         dwsp.x = event->x;
         dwsp.y = event->y;
         WSP x = DrawNaMoje(dwsp);
-        printf("%d %d moje\n", x.x, x.y);
         int nr=wspolrzedneNaNumer(x);
         if(Kto==0) return;///Sprawdzenie, czy gra wciąż trwa
         switch (ileKliknietych){///Sprawdzenie, któr etap ruchu trwa
@@ -25,8 +25,6 @@ static void plansza4(GtkWidget *widget, GdkEventButton *event, gpointer data) {
                 if(sprawdzPrzesuniecie(nr)>0)///Dobrze podane przesunięcie
                 {
 
-                    narysuj();
-                    gtk_widget_queue_draw(plansza);
                     if(Kto==2){///Zmiana w wyświetlanej informacji o tym, czyja kolej na ruch
                         sprintf(gracz, "Kolej gracza zielonego");
                         Kto=3;
@@ -73,12 +71,16 @@ static void plansza4(GtkWidget *widget, GdkEventButton *event, gpointer data) {
 }
 
 
+/**@fn clear4
+ * funkcja konieczna dla dzialania wyswietlania*/
 static gboolean clear4(GtkWidget *widget, cairo_t *cr, gpointer data) {
     cairo_set_source_surface(cr, surface, 0, 0);
     cairo_paint(cr);
     return FALSE;
 }
 
+/**@fn konfig4
+ * funkcja konieczna dla dzialania wyswietlania*/
 static gboolean konfig4(GtkWidget *widget, GdkEventConfigure *event, gpointer data) {
     if (surface) cairo_surface_destroy(surface);
     surface = gdk_window_create_similar_surface(gtk_widget_get_window(widget), CAIRO_CONTENT_COLOR,

@@ -89,16 +89,16 @@ void zmianaKoloru(int nr, int kolor){
     Dane[nr]=kolor;
 }
 
-
 void narysuj(){
     cairo_t *cr;
     cr = cairo_create(surface);
+
     cairo_set_source_rgba(cr, 0.2, 0.6, 0.623, 1);
     cairo_paint(cr);
 
-    for(int i=0; i<61; i++){
-        DWSP dwsp=MojeNaDraw(numerNaWspolrzedne(i));
-        cairo_set_source_surface(cr, obraz[Dane[i]], dwsp.x, dwsp.y);
+    for(int i=0; i<61; i++){ ;
+        cairo_set_source_surface(cr, obraz[Dane[i]], dwspDane[i].x, dwspDane[i].y);
         cairo_paint(cr);
+        dwspDane[i]=MojeNaDraw(numerNaWspolrzedne(i));
     }
 }
