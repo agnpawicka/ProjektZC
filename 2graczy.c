@@ -71,9 +71,10 @@ static void plansza2(GtkWidget *widget, GdkEventButton *event, gpointer data) {
         dwsp.y = event->y;
         WSP x = DrawNaMoje(dwsp);
         int nr = wspolrzedneNaNumer(x);
-        if (Kto == 0) return;///Sprawdzenie, czy gra wciąż trwa
+        if (Kto == 0 || czyAnimacja==1) return;///Sprawdzenie, czy gra wciąż trwa
         switch (ileKliknietych) {///Sprawdzenie, któr etap ruchu trwa
             case 0:///początek, program dostał początek przesuwanej przez gracza linii
+                //sleep(2);
                 sprawdzPoczatekLinii(nr);
                 break;
             case 1:///program ma już dane o początku linii, sprawdzenie, czy dobrze podano koniec linii
@@ -203,6 +204,7 @@ static void Instrukcja2(GtkWidget *widget, gpointer data) {
 }
 
 int main2(GtkWidget *widget, gpointer data) {
+    czyAnimacja=0;
     struct main_args *mainowe = data;
     int argc = mainowe->args;
     char **argv = mainowe->argv;

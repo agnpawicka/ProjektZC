@@ -22,6 +22,7 @@ int licznik=0;
 int Nr;
 /**poniższe 11 funkcji obsługuje animacje różnch ruchów*/
 gboolean funkcja(gpointer data){
+    czyAnimacja=1;
     POPKLIK.x+=pozycja.x;
     POPKLIK.y+=pozycja.y;
     dwspDane[poprzedniKlikniety].x=POPKLIK.x;
@@ -35,12 +36,14 @@ gboolean funkcja(gpointer data){
         dwspDane[poprzedniKlikniety]=MojeNaDraw(numerNaWspolrzedne(poprzedniKlikniety));
         narysuj();
         gtk_widget_queue_draw(plansza);
+        czyAnimacja=0;
         return FALSE;
     }
     return TRUE;
 }
 
 gboolean funkcja2(gpointer data){
+    czyAnimacja=1;
     POPKLIK.x+=pozycja.x;
     POPKLIK.y+=pozycja.y;
     PPKLIK.x+=pozycja.x;
@@ -63,12 +66,14 @@ gboolean funkcja2(gpointer data){
         dwspDane[przedPoprzedniKlikniety]=MojeNaDraw(numerNaWspolrzedne(przedPoprzedniKlikniety));
         narysuj();
         gtk_widget_queue_draw(plansza);
+        czyAnimacja=0;
         return FALSE;
     }
     return TRUE;
 }
 
 gboolean funkcja3(gpointer data){
+    czyAnimacja=1;
     POPKLIK.x+=pozycja.x;
     POPKLIK.y+=pozycja.y;
     PPKLIK.x+=pozycja.x;
@@ -100,12 +105,14 @@ gboolean funkcja3(gpointer data){
         dwspDane[Nr]=MojeNaDraw(numerNaWspolrzedne(Nr));
         narysuj();
         gtk_widget_queue_draw(plansza);
+        czyAnimacja=0;
         return FALSE;
     }
     return TRUE;
 }
 
 gboolean funkcja4(gpointer data){
+    czyAnimacja=1;
     POPKLIK.x+=pozycja.x;
     POPKLIK.y+=pozycja.y;
     PPKLIK.x+=pozycja.x;
@@ -136,12 +143,14 @@ gboolean funkcja4(gpointer data){
         dwspDane[Nr]=MojeNaDraw(numerNaWspolrzedne(Nr));
         narysuj();
         gtk_widget_queue_draw(plansza);
+        czyAnimacja=0;
         return FALSE;
     }
     return TRUE;
 }
 
 gboolean funkcja5(gpointer data){
+    czyAnimacja=1;
     POPKLIK.x+=pozycja.x;
     POPKLIK.y+=pozycja.y;
     PPKLIK.x+=pozycja.x;
@@ -165,12 +174,14 @@ gboolean funkcja5(gpointer data){
         dwspDane[przedPoprzedniKlikniety]=MojeNaDraw(numerNaWspolrzedne(przedPoprzedniKlikniety));
         narysuj();
         gtk_widget_queue_draw(plansza);
+        czyAnimacja=0;
         return FALSE;
     }
     return TRUE;
 }
 
 gboolean funkcja6(gpointer data){
+    czyAnimacja=1;
     POPKLIK.x+=pozycja.x;
     POPKLIK.y+=pozycja.y;
     PPKLIK.x+=pozycja.x;
@@ -201,12 +212,14 @@ gboolean funkcja6(gpointer data){
         dwspDane[wspolrzedneNaNumer(posredni)]=MojeNaDraw(posredni);
         narysuj();
         gtk_widget_queue_draw(plansza);
+        czyAnimacja=0;
         return FALSE;
     }
     return TRUE;
 }
 
 gboolean funkcja7(gpointer data){
+    czyAnimacja=1;
     POPKLIK.x+=pozycja.x;
     POPKLIK.y+=pozycja.y;
     PPKLIK.x+=pozycja.x;
@@ -244,12 +257,14 @@ gboolean funkcja7(gpointer data){
         dwspDane[wspolrzedneNaNumer(N)]=MojeNaDraw(N);
         narysuj();
         gtk_widget_queue_draw(plansza);
+        czyAnimacja=0;
         return FALSE;
     }
     return TRUE;
 }
 
 gboolean funkcja8(gpointer data){
+    czyAnimacja=1;
     POPKLIK.x+=pozycja.x;
     POPKLIK.y+=pozycja.y;
     PPKLIK.x+=pozycja.x;
@@ -288,12 +303,14 @@ gboolean funkcja8(gpointer data){
         dwspDane[wspolrzedneNaNumer(N)]=MojeNaDraw(N);
         narysuj();
         gtk_widget_queue_draw(plansza);
+        czyAnimacja=0;
         return FALSE;
     }
     return TRUE;
 }
 
 gboolean funkcja9(gpointer data){
+    czyAnimacja=1;
     POPKLIK.x+=pozycja.x;
     POPKLIK.y+=pozycja.y;
     PPKLIK.x+=pozycja.x;
@@ -340,12 +357,14 @@ gboolean funkcja9(gpointer data){
         dwspDane[wspolrzedneNaNumer(N1)]=MojeNaDraw(N1);
         narysuj();
         gtk_widget_queue_draw(plansza);
+        czyAnimacja=0;
         return FALSE;
     }
     return TRUE;
 }
 
 gboolean funkcja10(gpointer data){
+    czyAnimacja=1;
     POPKLIK.x+=pozycja.x;
     POPKLIK.y+=pozycja.y;
     PPKLIK.x+=pozycja.x;
@@ -392,12 +411,14 @@ gboolean funkcja10(gpointer data){
         dwspDane[wspolrzedneNaNumer(N1)]=MojeNaDraw(N1);
         narysuj();
         gtk_widget_queue_draw(plansza);
+        czyAnimacja=0;
         return FALSE;
     }
     return TRUE;
 }
 
 gboolean funkcja11(gpointer data){
+    czyAnimacja=1;
     POPKLIK.x+=pozycja.x;
     POPKLIK.y+=pozycja.y;
     PPKLIK.x+=pozycja.x;
@@ -431,6 +452,7 @@ gboolean funkcja11(gpointer data){
         dwspDane[wspolrzedneNaNumer(posredni)]=MojeNaDraw(posredni);
         narysuj();
         gtk_widget_queue_draw(plansza);
+        czyAnimacja=0;
         return FALSE;
     }
     return TRUE;
@@ -467,7 +489,6 @@ int sprawdzPrzesuniecie(int nr){
             POPKLIK.y=pozycja.y+pop.y;
             licznik=0;
             g_timeout_add(50, (GSourceFunc)funkcja, NULL);
-
             ///////////////////////////////////////////////////////////////////
             return 1;
         }

@@ -78,6 +78,8 @@ extern cairo_surface_t *surface;
 GtkWidget *ramka;
 GtkWidget *plansza;
 
+
+int czyAnimacja;
 /**@var wersja - przechowuje informację iluosobowa wersja jest rozgrwana*/
 int wersja;
 
